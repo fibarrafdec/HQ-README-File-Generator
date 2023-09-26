@@ -1,8 +1,8 @@
-//Packages needed for this application
+//Packages needed for this application.
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-//Array of questions for user input
+//Array of questions for user input.
 const questions = [
   {
     type: 'input',
@@ -36,6 +36,11 @@ const questions = [
   },
   {
     type: 'input',
+    name: 'installation_instructions',
+    message: "Enter the Installation Instructions:",
+  },
+  {
+    type: 'input',
     name: 'usage_instructions',
     message: "Enter the Usage Instructions:",
   },
@@ -46,13 +51,28 @@ const questions = [
   },
   {
     type: 'input',
-    name: 'deployed_application_URL',
-    message: "Enter deployed application's URL:",
+    name: 'video_location',
+    message: "Enter video location:",
   },
   {
     type: 'input',
     name: 'screenshot',
     message: 'Enter the Screenshot location:',
+  },
+  {
+    type: 'input',
+    name: 'test',
+    message: "Enter the testing process:",
+  },
+  {
+    type: 'input',
+    name: 'questions',
+    message: "Enter your Email address",
+  },
+  {
+    type: 'input',
+    name: 'questionsGH',
+    message: "Enter your GitHub username",
   },
   {
     type: 'input',
@@ -74,20 +94,43 @@ function generateReadme(userResponses) {
     user_story,
     acceptance_criteria,
     gif,
+    installation_instructions,
     usage_instructions,
     technologies_used,
-    deployed_application_URL,
+    video_location,
     screenshot,
+    test,
+    questions,
+    questionsGH,
     credits,
     license,
   } = userResponses;
 
-  // Generate the README content using template literals
+  // Generate the README content using template literals.
   const readmeContent = `
 # ${title}
 
 ## Description
 ${description}
+
+## Table of Contents:
+
+- [Overview](#Overview)
+- [The Challenge](#The-Challenge)
+- [User Story](#User-Story)
+- [Acceptance Criteria](#Acceptance-Criteria)
+- [GIF](#GIF)
+- [Installation Instructions](#Installation-Instructions)
+- [Usage Instructions](#Usage-Instructions)
+- [Technologies Used](#Technologies-Used)
+- [Video Location](#Video-Location)
+- [Screenshots](#Screenshots)
+- [Test](#Test)
+- [Questions](#Questions)
+- [Credits](#Credits)
+- [License](#License)
+
+# Overview
 
 ## Challenge
 ${challenge}
@@ -101,17 +144,31 @@ ${acceptance_criteria}
 ## GIF
 ![GIF](${gif})
 
+## Installation Instructions
+${installation_instructions}
+
 ## Usage Instructions
 ${usage_instructions}
 
 ## Technologies Used
 ${technologies_used}
 
-## Deployed Application URL
-[${deployed_application_URL}](${deployed_application_URL})
+## Video Location
+[${video_location}](${video_location})
 
 ## Screenshot
 ![Screenshot](${screenshot})
+
+## Test
+${test}
+
+## Questions?
+
+If you have any questions related with this HQ README File Generator, feel free to reach me through:
+
+Email:[${questions}](${questions})
+
+GitHub username:[${questionsGH}](${questionsGH})
 
 ## Credits
 ${credits}
@@ -123,9 +180,9 @@ This project is licensed under the ${license} License.
   return readmeContent;
 }
 
-//Function to write README file
+//Function to write README file.
 function writeToFile(fileName, data) {
-  // fs module to write data to the specified file
+  // fs module to write data to the specified file.
   fs.writeFile(fileName, data, (err) => {
     if (err) {
       console.error(err);
@@ -135,18 +192,18 @@ function writeToFile(fileName, data) {
   });
 }
 
-// Function to initialize app
+// Function to initialize app.
 function init() {
   inquirer
     .prompt(questions)
     .then((userResponses) => {
-      // Generate README content based on userResponses
+      // Generate README content based on userResponses.
       const readmeContent = generateReadme(userResponses);
 
-      // Specify the filename for the generated README
+      // Specify the filename for the generated README.
       const fileName = 'README.md';
 
-      // Write the README content to the file
+      // Write the README content to the file.
       writeToFile(fileName, readmeContent);
     })
     .catch((error) => {
@@ -154,5 +211,5 @@ function init() {
     });
 }
 
-// Call the init function to start the application
+// Call the init function to start the application.
 init();
