@@ -28,9 +28,16 @@ This application allows the user to create a high quality README file, for any p
 In order to reach the goal for this project, I have used: Node, inquirer and fs to run the application, prompt all the questions, retrieve the information needed, and generate the new file (HQ-README-md). Also, I added a menu of different choices from where the user can choose the license for the project.
 
 ## User Story
-AS A developer, I WANT a README generator, SO THAT I can quickly create a professional README for a new project.
+
+```md
+AS A developer, 
+I WANT a README generator, 
+SO THAT I can quickly create a professional README for a new project.
+```
 
 ## Acceptance Criteria
+
+```md
 GIVEN a command-line application that accepts user input, 
 WHEN I am prompted for information about my application repository, 
 THEN a high-quality, professional README.md is generated with the title of my project and sections entitled Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions, 
@@ -46,6 +53,7 @@ WHEN, I enter my email address,
 THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions, 
 WHEN I click on the links in the Table of Contents, 
 THEN I am taken to the corresponding section of the README.
+```
 
 ## Installation Instructions
 1. Clone this repository into your local environment,  
@@ -82,6 +90,8 @@ If you have any questions related with this HQ README File Generator, feel free 
 Email:[fibarrafdec@gmail.com](fibarrafdec@gmail.com)
 
 GitHub username:[fibarrafdec](fibarrafdec)
+GitHub link: https://github.com/fibarrafdec
+
 
 ## Credits
 This application has been created using the code from the Challenge 09 of the Boot Camp, Nevertheless all the logic (index.js) has ben created by myself.
