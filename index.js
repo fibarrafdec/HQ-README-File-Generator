@@ -83,10 +83,11 @@ const questions = [
     type: 'list',
     name: 'license',
     message: 'Choose a license for your application:',
-    choices: ['MIT', 'Apache 2.0', 'GNU GPLv3', 'ISC', 'Other'],
+    choices: ['MIT', 'Apache 2.0', 'GNU GPLv3', 'ISC'],
   },
 ];
 
+//Function that generates the responses 
 function generateReadme(userResponses) {
   const {
     title,
@@ -111,6 +112,7 @@ function generateReadme(userResponses) {
 let licenseBadge = '';
 let licenseNotice = '';
 
+//Function that returns the license badge and link based on which license is selected
 switch (license) {
   case 'MIT':
     licenseBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
@@ -120,12 +122,20 @@ switch (license) {
     licenseBadge = '[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
     licenseNotice = 'This application is covered under the Apache 2.0 License.';
     break;
+  case 'GNU GPLv3':
+    licenseBadge = '[![License: GNU GPLv3](https://img.shields.io/badge/License-GNU%20GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
+    licenseNotice = 'This application is covered under the GNU GPLv3 License.';
+    break;
+  case 'ISC':
+    licenseBadge = '[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)';
+    licenseNotice = 'This application is covered under the ISC License.';
+    break;
   default:
     licenseBadge = '';
     licenseNotice = '';
 }
 
-// Generate the README content using template literals
+//Generate the README content using template literals
 const readmeContent = `
 
 # ${title}
@@ -178,7 +188,7 @@ ${technologies_used}
 ## Video Location
 [${video_location}](${video_location})
 
-## Screenshot
+## Screenshots
 ![Screenshot](${screenshot})
 
 ## Test
@@ -190,7 +200,8 @@ If you have any questions related with this HQ README File Generator, feel free 
 
 Email:[${questions}](${questions})
 
-GitHub username:[${questionsGH}](${questionsGH})
+GitHub username:[${questionsGH}](${questionsGH})                                                      
+GitHub link: https://github.com/${questionsGH}
 
 ## Credits
 ${credits}
@@ -204,7 +215,7 @@ ${licenseBadge}`;
 
 //Function to write README file.
 function writeToFile(fileName, data) {
-  // fs module to write data to the specified file.
+  // fs module to write data to the file.
   fs.writeFile(fileName, data, (err) => {
     if (err) {
       console.error(err);
@@ -223,7 +234,7 @@ function init() {
       const readmeContent = generateReadme(userResponses);
 
       // Specify the filename for the generated README.
-      const fileName = 'README.md';
+      const fileName = 'HQ-README.md';
 
       // Write the README content to the file.
       writeToFile(fileName, readmeContent);
