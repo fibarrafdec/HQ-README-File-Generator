@@ -80,9 +80,10 @@ const questions = [
     message: "Enter the credits:",
   },
   {
-    type: 'input',
+    type: 'list',
     name: 'license',
-    message: 'What license are you using?',
+    message: 'Choose a license for your application:',
+    choices: ['MIT', 'Apache 2.0', 'GNU GPLv3', 'ISC', 'Other'],
   },
 ];
 
@@ -106,12 +107,33 @@ function generateReadme(userResponses) {
     license,
   } = userResponses;
 
-  // Generate the README content using template literals.
-  const readmeContent = `
+//Variables for the badge and notice
+let licenseBadge = '';
+let licenseNotice = '';
+
+switch (license) {
+  case 'MIT':
+    licenseBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
+    licenseNotice = 'This application is covered under the MIT License.';
+    break;
+  case 'Apache 2.0':
+    licenseBadge = '[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
+    licenseNotice = 'This application is covered under the Apache 2.0 License.';
+    break;
+  default:
+    licenseBadge = '';
+    licenseNotice = '';
+}
+
+// Generate the README content using template literals
+const readmeContent = `
+
 # ${title}
 
 ## Description
 ${description}
+
+${licenseBadge}
 
 ## Table of Contents:
 
@@ -174,8 +196,8 @@ GitHub username:[${questionsGH}](${questionsGH})
 ${credits}
 
 ## License
-This project is licensed under the ${license} License.
-`;
+${licenseNotice}
+${licenseBadge}`;
 
   return readmeContent;
 }
